@@ -1,0 +1,8 @@
+﻿img.Image {
+    max-width: 100%;
+    display: block;
+}
+
+div#ImageContainer {
+    width: 600px;
+}
