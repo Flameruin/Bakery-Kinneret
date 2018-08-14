@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>האתר של טל - @ViewBag.Title</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        
+</head>
+<body dir="rtl">
+    <div id="page">
+        <header>
+            <p class="site-title"></p>
+            <nav>
+                <ul>
+                                <!--
+                <li><a href="~/">HomeNoAction</a></li>
+                <li><a href="~/About">About Us</a></li>
+                  -->
+                    <li>@Html.ActionLink("עריכת מנהל", "Index", "CakeTables")</li>
+                    <li>@Html.ActionLink("התחברות לאדמין", "Index", "Logon")</li>
+                    <li>@Html.ActionLink("גלריה", "Gallery", "Home")</li>
+                    <li>@Html.ActionLink("צור קשר", "SendEmail", "Home")</li>
+                    <li>@Html.ActionLink("דף הבית", "Index", "Home")</li>
+                </ul>
+            </nav>
+        </header>
+        <div id="body">
+            @RenderBody()
+        </div>
+        <footer>
+            &copy;@DateTime.Now.Year - ניריה והדקלים
+        </footer>
+    </div>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+
+
+
+
+@*
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+    <li>@Html.ActionLink("About", "About", "Home")</li>
+    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+    <li>@Html.ActionLink("גלריה", "Index", "Cake")</li>
+    <li>@Html.ActionLink("גלריה דינאמית ממאגר מידע", "Index", "CakeTables")</li>
+
+     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+*@

@@ -1,0 +1,47 @@
+﻿
+@model IEnumerable<test5.Models.CakeTable>
+
+@{
+                ViewBag.Title = "דף הבית";
+}
+
+<head>
+    <link href="~/Content/lightbox.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div dir="rtl">
+        <h1>ברוכים הבאים לאתר העוגות של טל</h1>
+        <div id="featuredProduct">
+            <img alt="Featured Product" src="~/Pics/tal margalit.jpg" width="920" height="300" />
+        </div>
+
+
+        <div id="productsWrapper">
+            <ul id="products" data-role="listview" data-inset="true">
+                @foreach (var p in Model)
+                {
+                    <li class="product">
+                        <a href=@Url.Content(p.Image) title=@p.CakeName>
+                            <img class="hide-from-desktop" src="~/Home/Contact" alt="Image of @p.CakeName" />
+                            <div class="productInfo">
+                                <h3>@p.CakeName</h3>
+
+                                <a class="example-image-link" href=@Url.Content(p.Image) data-lightbox="example-set"><img class="product-image hide-from-mobile" src=@Url.Content(p.Image) alt="" /></a>
+                                <p class="description">@p.Description</p>
+                                <p class="price hide-from-desktop">גודל: @p.Size </p>
+                            </div>
+                        </a>
+                        <!-- Desktop only -->
+                        <div class="action  hide-from-mobile">
+                            <p class="price">גודל: @p.Size</p>
+                            <a class="order-button" href="~/Home/SendEmail" title="הזמן @p.CakeName">הזמן עכשיו</a>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+
+    <script src="~/Scripts/lightbox-plus-jquery.min.js"></script>
+</body>

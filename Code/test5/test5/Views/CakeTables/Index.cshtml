@@ -1,0 +1,85 @@
+﻿@model IEnumerable<test5.Models.CakeTable>
+
+@{
+    ViewBag.Title = "עריכת מנהל";
+}
+
+
+<head>
+    <link href="~/Content/StyleSheet.css" rel="stylesheet" />
+</head>
+<div dir="rtl">
+    <h1 align="center">חלון עריכת מנהל</h1>
+
+    <p>
+        @Html.ActionLink("הוספת פריט חדש", "Create")
+    </p>
+
+    <!--Search -->
+    <form asp-controller="Home" asp-action="Index">
+        <p>
+            אני רגיש ל: <input type="text" name="SearchString">
+            <input type="submit" value="חפש" />
+        </p>
+    </form>
+
+    <table class="container">
+        <tr>
+            <th>
+                @*   @Html.DisplayNameFor(model => model.CakeName) *@
+                שם העוגה
+            </th>
+            <th>
+                @*   @Html.DisplayNameFor(model => model.Image) *@
+                תמונה
+            </th>
+            <th>
+                @*    @Html.DisplayNameFor(model => model.IsSensitive) *@
+                רגישות
+            </th>
+            <th>
+                @*    @Html.DisplayNameFor(model => model.Description) *@
+                תיאור/רכיבים
+            </th>
+            <th>
+                @*    @Html.DisplayNameFor(model => model.Description) *@
+                גודל
+            </th>
+            <th></th>
+        </tr>
+
+        @Html.Raw(TempData["msg"])
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CakeName)
+                </td>
+                <td>
+                    @*    @Html.DisplayFor(modelItem => item.Image)  *@
+                    <div class="none">
+                        <a target="_blank" href=@Url.Content(item.Image)>
+                            <img src=@Url.Content(item.Image) alt="something went wrong" width="300" height="200">
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsSensitive)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Size)
+                </td>
+                <td>
+                    @Html.ActionLink("ערוך", "Edit", new { id = item.CakeName }) |
+                    @Html.ActionLink("פרטים", "Details", new { id = item.CakeName }) |
+                    @Html.ActionLink("מחק", "Delete", new { id = item.CakeName })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

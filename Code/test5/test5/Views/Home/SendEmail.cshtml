@@ -1,0 +1,93 @@
+﻿@model test5.Models.EmployeeModel
+
+@{
+    ViewBag.Title = "SendEmail";
+}
+
+<head>
+    <link href="~/Content/contact.css" rel="stylesheet" />
+    <link href="~/Content/ContactStyleSheet.css" rel="stylesheet" />
+</head>
+
+<p><strong>נשמח לפגוש אתכם</strong></p>
+
+
+<p>
+    <span>ימים א&#39; עד ה&#39;&nbsp;&nbsp; 07:00 - 21:00</span><br />
+    ימי ו&#39; וערבי חג &nbsp;07:00 - 15:00<br />
+</p>
+
+
+<p><span><strong>טל מרגלית</strong></span></p>
+
+<p>
+    <span>טלפון.&nbsp;</span><a href="tel:+972505284100">050-528-4100</a><span>&nbsp;</span><br />
+    <span>פייסבוק: </span><a href="https://www.facebook.com/talyamin10" target="_blank">לחץ כאן</a> <br />
+    <span>אינסטגרם: </span><a href="https://www.instagram.com/p/Bjmd-0ggw8J/?igshid=cowbxlbb4xh4&utm_source=fb_www_attr" target="_blank">לחץ כאן</a>
+</p>
+
+
+
+<p><u>כתובתנו</u><span>: מושב מיטב&nbsp;</span></p>
+
+
+<h2>שליחת הודעה</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmailSubject, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmailSubject, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmailSubject, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+           @* @Html.LabelFor(model => model.EmailToReturn, htmlAttributes: new { @class = "control-label col-md-2" }) *@
+            הכנס פרטי התקשרות כגון אימייל או מספר טלפון
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmailToReturn, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmailToReturn, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EMailBody, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EMailBody, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EMailBody, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="EMailBody">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="שלח" class="btn btn-primary" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10 text-success">
+                @ViewBag.Status
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("חזרה לדף הבית", "Index")
+</div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
